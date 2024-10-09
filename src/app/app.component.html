@@ -1,0 +1,37 @@
+<div class="dropdown mb-3">
+    <label for="viewSelect" class="form-label">Select View:</label>
+    <select id="viewSelect" class="form-select custom-dropdown" [(ngModel)]="selectedView" (change)="onViewChange()">
+        <option value="all">ALL</option>
+        <option value="map">Map View</option>
+        <option value="grid">Grid View</option>
+    </select>
+</div>
+
+<!-- Conditional Rendering Based on Selected View -->
+<ng-container *ngIf="selectedView === 'all'">
+    <app-maps></app-maps>
+    <div class="row">
+        <div class="col-6">
+            <app-graph [id]="id1"></app-graph>
+        </div>
+        <div class="col-6">
+            <app-graph [id]="id2"></app-graph>
+            
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="selectedView === 'map'">
+    <app-maps></app-maps>
+</ng-container>
+
+<ng-container *ngIf="selectedView === 'grid'">
+    <div class="row">
+        <div class="col-6">
+            <app-graph [id]="id1"></app-graph>
+        </div>
+        <div class="col-6">
+            <app-graph [id]="id2"></app-graph>
+        </div>
+    </div>
+</ng-container>
